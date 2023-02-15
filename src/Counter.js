@@ -1,8 +1,13 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import "./style.css";
 
 const Counter =()=>{
-const [value , setValue] = useState(0);
+const initialValue = () => Number(window.localStorage.getItem('template'));
+const [value , setValue] = useState(initialValue);
+
+useEffect (()=>{
+  window.localStorage.setItem('template', value);
+},[value])
 
 const increaseFn =()=>{
    setValue(value+1);
